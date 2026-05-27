@@ -1,0 +1,1343 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="description"
+      content="Akshada Hadal – Web Developer Intern portfolio showcasing frontend projects, skills, and contact."
+    />
+    <title>Akshada Hadal | Web Developer Intern</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            fontFamily: {
+              display: ["Syne", "sans-serif"],
+              body: ["DM Sans", "sans-serif"],
+            },
+            colors: {
+              accent: "#FF6B35",
+              accentDark: "#e85a22",
+              brand: "#0A0A0F",
+              surface: "#13131A",
+              muted: "#A0A0B0",
+              border: "#2A2A3A",
+            },
+            keyframes: {
+              fadeUp: {
+                "0%": { opacity: "0", transform: "translateY(32px)" },
+                "100%": { opacity: "1", transform: "translateY(0)" },
+              },
+              float: {
+                "0%,100%": { transform: "translateY(0px)" },
+                "50%": { transform: "translateY(-14px)" },
+              },
+              pulseGlow: {
+                "0%,100%": { boxShadow: "0 0 0 0 rgba(255,107,53,0.4)" },
+                "50%": { boxShadow: "0 0 0 16px rgba(255,107,53,0)" },
+              },
+              blink: {
+                "0%,100%": { opacity: "1" },
+                "50%": { opacity: "0" },
+              },
+            },
+            animation: {
+              "fade-up": "fadeUp 0.7s ease forwards",
+              float: "float 4s ease-in-out infinite",
+              "pulse-glow": "pulseGlow 2s ease-in-out infinite",
+              blink: "blink 1s step-end infinite",
+            },
+          },
+        },
+      };
+    </script>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body class="antialiased font-body">
+    <nav
+      id="navbar"
+      class="navbar-glass fixed top-0 left-0 right-0 z-50"
+      role="navigation"
+      aria-label="Main navigation"
+    >
+      <div
+        class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between"
+      >
+        <a
+          href="#hero"
+          class="font-display text-xl font-bold grad-text tracking-tight"
+          aria-label="Akshada Hadal – back to top"
+        >
+          &lt;Akshada Hadal /&gt;
+        </a>
+
+        <ul
+          class="hidden md:flex items-center gap-8 text-sm font-medium text-muted"
+          role="list"
+        >
+          <li>
+            <a href="#about" class="nav-link hover:text-white transition-colors"
+              >About</a
+            >
+          </li>
+          <li>
+            <a
+              href="#skills"
+              class="nav-link hover:text-white transition-colors"
+              >Skills</a
+            >
+          </li>
+          <li>
+            <a
+              href="#projects"
+              class="nav-link hover:text-white transition-colors"
+              >Projects</a
+            >
+          </li>
+          <li>
+            <a
+              href="#contact"
+              class="nav-link hover:text-white transition-colors"
+              >Contact</a
+            >
+          </li>
+        </ul>
+
+        <div class="flex items-center gap-4">
+          <button
+            id="dark-toggle"
+            aria-label="Toggle dark mode"
+            aria-pressed="true"
+            class="w-12 h-6 rounded-full bg-border flex items-center px-1 relative focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-brand"
+          >
+            <!-- The moving knob: JS animates translateX -->
+            <span
+              id="toggle-knob"
+              class="w-4 h-4 bg-accent rounded-full absolute left-1"
+              aria-hidden="true"
+            ></span>
+          </button>
+
+          <button
+            id="burger"
+            aria-label="Open navigation menu"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+            class="md:hidden flex flex-col gap-1.5 p-1 focus:outline-none focus:ring-2 focus:ring-accent rounded"
+          >
+            <span
+              class="burger-line w-6 h-0.5 bg-white rounded transition-all duration-300"
+              aria-hidden="true"
+            ></span>
+            <span
+              class="burger-line w-6 h-0.5 bg-white rounded transition-all duration-300"
+              aria-hidden="true"
+            ></span>
+            <span
+              class="burger-line w-6 h-0.5 bg-white rounded transition-all duration-300"
+              aria-hidden="true"
+            ></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile dropdown menu (JS toggles .open class for max-height animation) -->
+      <div
+        id="mobile-menu"
+        class="md:hidden navbar-glass border-t border-border"
+        aria-hidden="true"
+      >
+        <ul
+          class="flex flex-col px-6 py-4 gap-4 text-sm font-medium text-muted"
+          role="list"
+        >
+          <li>
+            <a
+              href="#about"
+              class="mobile-link hover:text-accent transition-colors"
+              >About</a
+            >
+          </li>
+          <li>
+            <a
+              href="#skills"
+              class="mobile-link hover:text-accent transition-colors"
+              >Skills</a
+            >
+          </li>
+          <li>
+            <a
+              href="#projects"
+              class="mobile-link hover:text-accent transition-colors"
+              >Projects</a
+            >
+          </li>
+          <li>
+            <a
+              href="#contact"
+              class="mobile-link hover:text-accent transition-colors"
+              >Contact</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <section
+      id="hero"
+      class="min-h-screen flex items-center pt-24 pb-16 px-6 relative overflow-hidden"
+    >
+      <div
+        class="absolute top-1/4 -left-32 w-72 h-72 rounded-full bg-accent opacity-10 blur-3xl pointer-events-none"
+        aria-hidden="true"
+      ></div>
+      <div
+        class="absolute bottom-1/3 right-0 w-96 h-96 rounded-full bg-orange-400 opacity-5 blur-3xl pointer-events-none"
+        aria-hidden="true"
+      ></div>
+
+      <div
+        class="max-w-6xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
+      >
+        <div class="space-y-6 animate-fade-up">
+          <span
+            class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-accent/30 bg-accent/10 text-accent text-xs font-semibold tracking-widest uppercase"
+          >
+            <span
+              class="w-2 h-2 rounded-full bg-accent animate-pulse"
+              aria-hidden="true"
+            ></span>
+            Available for Fulltime Opportunity
+          </span>
+
+          <h1
+            class="font-display text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-tight text-white dark:text-white"
+          >
+            Hi, I'm<br />
+            <span class="grad-text">Akshada Hadal</span>
+          </h1>
+
+          <!-- Typing effect: JS cycles through role strings -->
+          <p class="font-display text-2xl sm:text-3xl font-semibold text-muted">
+            I'm a
+            <span
+              id="typed-text"
+              class="text-white dark:text-white"
+              aria-live="polite"
+              aria-label="Current role"
+            ></span
+            ><!--
+            --><span class="animate-blink text-accent" aria-hidden="true"
+              >|</span
+            >
+          </p>
+
+          <!-- Short bio paragraph -->
+          <p class="text-muted leading-relaxed max-w-md">
+            Motivated frontend developer with hands-on experience in modern web
+            technologies, APIs, and development tools. Passionate about building
+            responsive, user-friendly applications while continuously growing my
+            skills.
+          </p>
+
+          <div class="flex flex-wrap gap-4 pt-2">
+            <a
+              href="#projects"
+              class="group px-7 py-3 bg-accent hover:bg-accentDark text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-[0_0_24px_rgba(255,107,53,0.5)]"
+            >
+              View Projects
+              <span
+                class="inline-block ml-1 group-hover:translate-x-1 transition-transform"
+                aria-hidden="true"
+                >→</span
+              >
+            </a>
+
+            <a
+              href="#contact"
+              class="px-7 py-3 border border-accent/50 hover:border-accent text-accent font-semibold rounded-lg transition-all duration-300 hover:bg-accent/10 hover:scale-105"
+            >
+              Hire Me
+            </a>
+          </div>
+
+          <!-- Social links -->
+          <div class="flex flex-wrap gap-4 pt-2">
+            <a
+              href="https://github.com/akshada-03"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Akshada's GitHub profile (opens in new tab)"
+              class="text-muted hover:text-accent transition-colors text-sm font-medium hover:underline underline-offset-4"
+            >
+              GitHub ↗
+            </a>
+            <a
+              href="https://www.linkedin.com/in/akshada-hadal/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Akshada's LinkedIn profile (opens in new tab)"
+              class="text-muted hover:text-accent transition-colors text-sm font-medium hover:underline underline-offset-4"
+            >
+              LinkedIn ↗
+            </a>
+            <span class="text-muted text-sm">📍 Palghar, Maharashtra</span>
+          </div>
+        </div>
+
+        <!-- Right: Floating terminal card -->
+        <div class="relative flex justify-center reveal">
+          <!-- Glow behind the card -->
+          <div
+            class="absolute w-72 h-72 bg-accent/20 blur-3xl rounded-full"
+            aria-hidden="true"
+          ></div>
+
+          <!-- The card itself -->
+          <div
+            class="relative bg-surface border border-border rounded-3xl p-8 w-full max-w-md shadow-2xl animate-float"
+            role="img"
+            aria-label="Tech stack preview card"
+          >
+            <!-- Fake browser/terminal dots -->
+            <div class="flex items-center gap-2 mb-6" aria-hidden="true">
+              <span class="w-3 h-3 rounded-full bg-red-400"></span>
+              <span class="w-3 h-3 rounded-full bg-yellow-400"></span>
+              <span class="w-3 h-3 rounded-full bg-green-400"></span>
+            </div>
+
+            <p class="text-green-400 font-mono text-sm mb-2">
+              &gt; Initializing portfolio...
+            </p>
+            <p class="text-muted text-sm mb-4">
+              Building responsive modern web experiences.
+            </p>
+
+            <!-- Tech stack pills -->
+            <div class="flex flex-wrap gap-3">
+              <span
+                class="px-3 py-1 rounded-full bg-orange-500/10 text-orange-400 text-sm"
+                >HTML</span
+              >
+              <span
+                class="px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-sm"
+                >CSS</span
+              >
+              <span
+                class="px-3 py-1 rounded-full bg-yellow-500/10 text-yellow-400 text-sm"
+                >JavaScript</span
+              >
+              <span
+                class="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-sm"
+                >Tailwind</span
+              >
+              <span
+                class="px-3 py-1 rounded-full bg-red-500/10 text-red-400 text-sm"
+                >Laravel</span
+              >
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 mt-8">
+              <div class="bg-brand rounded-xl p-4 border border-border">
+                <p class="text-2xl font-bold text-accent">4+</p>
+                <p class="text-xs text-muted">Projects</p>
+              </div>
+              <div class="bg-brand rounded-xl p-4 border border-border">
+                <p class="text-2xl font-bold text-accent">5+</p>
+                <p class="text-xs text-muted">Skills</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll-down indicator -->
+      <div
+        class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce opacity-50"
+        aria-hidden="true"
+      >
+        <span class="text-xs text-muted tracking-widest uppercase">Scroll</span>
+        <svg
+          class="w-4 h-4 text-accent"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path d="M19 9l-7 7-7-7" />
+        </svg>
+      </div>
+    </section>
+
+    <!-- ============================================================
+      ABOUT SECTION
+    ============================================================ -->
+    <section id="about" class="py-24 px-6 bg-surface">
+      <div class="max-w-6xl mx-auto">
+        <!-- Section heading -->
+        <div class="reveal">
+          <p
+            class="text-accent text-sm font-semibold tracking-widest uppercase"
+          >
+            Get to Know Me
+          </p>
+          <h2
+            class="font-display text-4xl sm:text-5xl font-bold text-white mt-1"
+          >
+            About Me
+          </h2>
+          <div class="section-divider" aria-hidden="true"></div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+          <!-- Left: bio  -->
+          <div class="reveal space-y-5 text-muted leading-relaxed">
+            <!-- FIX: Removed duplicate comma after "Akshada Hadal," -->
+            <p>
+              I'm <span class="text-white font-semibold">Akshada Hadal</span>, a
+              passionate web developer intern with experience building
+              responsive and interactive web applications using modern frontend
+              technologies.
+            </p>
+            <p>
+              I enjoy developing user-friendly applications and working with
+              APIs, databases, and modern JavaScript tools. I'm eager to
+              contribute to innovative projects while continuously learning and
+              improving my development skills.
+            </p>
+
+            <div class="grid grid-cols-2 gap-4 pt-4">
+              <div class="bg-brand p-4 rounded-xl border border-border">
+                <p class="text-accent font-display text-2xl font-bold">4+</p>
+                <p class="text-xs text-muted mt-1">Projects Built</p>
+              </div>
+              <div class="bg-brand p-4 rounded-xl border border-border">
+                <p class="text-accent font-display text-2xl font-bold">5+</p>
+                <p class="text-xs text-muted mt-1">Technologies</p>
+              </div>
+              <div class="bg-brand p-4 rounded-xl border border-border">
+                <p class="text-accent font-display text-2xl font-bold">2+</p>
+                <p class="text-xs text-muted mt-1">Certifications</p>
+              </div>
+              <div class="bg-brand p-4 rounded-xl border border-border">
+                <p class="text-accent font-display text-2xl font-bold">∞</p>
+                <p class="text-xs text-muted mt-1">Learning Mindset</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: timeline -->
+          <div class="reveal">
+            <h3 class="font-display text-xl font-bold text-white mb-6">
+              My Journey
+            </h3>
+
+            <!-- Vertical timeline: left border + dot markers -->
+            <ol class="relative border-l-2 border-border pl-6 space-y-8">
+              <!-- Timeline item 1 -->
+              <li class="relative">
+                <!-- Dot marker -->
+                <span
+                  class="absolute -left-[29px] top-1 w-3.5 h-3.5 rounded-full bg-accent ring-4 ring-surface"
+                  aria-hidden="true"
+                ></span>
+                <p
+                  class="text-xs text-accent font-semibold tracking-widest uppercase mb-1"
+                >
+                  May 2025 — Present
+                </p>
+                <h4 class="font-display font-semibold text-white">
+                  Web Developer Intern
+                </h4>
+                <p class="text-muted text-sm mt-1">
+                  Enjay IT Solutions Ltd &middot; Learning industry-standard
+                  workflows, version control, team collaboration, and building
+                  real-world projects daily.
+                </p>
+              </li>
+
+              <!-- Timeline item 2 -->
+              <li class="relative">
+                <span
+                  class="absolute -left-[29px] top-1 w-3.5 h-3.5 rounded-full bg-accent ring-4 ring-surface"
+                  aria-hidden="true"
+                ></span>
+                <p
+                  class="text-xs text-accent font-semibold tracking-widest uppercase mb-1"
+                >
+                  Feb 2023 — Apr 2023
+                </p>
+                <h4 class="font-display font-semibold text-white">
+                  Graduate Engineer Trainee
+                </h4>
+                <p class="text-muted text-sm mt-1">
+                  LTIMindtree &middot; Completed training in HTML, CSS,
+                  JavaScript, Java, and SQL with hands-on coding exercises and
+                  assessments.
+                </p>
+              </li>
+
+              <!-- Timeline item 3 -->
+              <li class="relative">
+                <span
+                  class="absolute -left-[29px] top-1 w-3.5 h-3.5 rounded-full bg-border ring-4 ring-surface"
+                  aria-hidden="true"
+                ></span>
+                <p
+                  class="text-xs text-muted font-semibold tracking-widest uppercase mb-1"
+                >
+                  2019 — 2023
+                </p>
+                <h4 class="font-display font-semibold text-white">
+                  B.Tech — Electronics & Telecommunication
+                </h4>
+                <p class="text-muted text-sm mt-1">
+                  Bharatiya Vidya Bhavan's Sardar Patel Institute of Technology,
+                  Mumbai &middot; 70.16%
+                </p>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS SECTION -->
+    <section id="skills" class="py-24 px-6 bg-brand">
+      <div class="max-w-6xl mx-auto">
+        <div class="reveal">
+          <p
+            class="text-accent text-sm font-semibold tracking-widest uppercase"
+          >
+            What I Use
+          </p>
+          <h2
+            class="font-display text-4xl sm:text-5xl font-bold text-white mt-1"
+          >
+            Skills
+          </h2>
+          <div class="section-divider" aria-hidden="true"></div>
+        </div>
+
+        <!-- Grid: 1 col → 2 tablet → 3 desktop -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- HTML5 -->
+          <div
+            class="reveal reveal-delay skill-card group bg-surface border border-border hover:border-accent rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_32px_rgba(255,107,53,0.15)]"
+          >
+            <div class="flex items-center gap-4 mb-5">
+              <div
+                class="w-12 h-12 rounded-xl bg-orange-500/10 flex items-center justify-center text-2xl"
+                aria-hidden="true"
+              >
+                🌐
+              </div>
+              <div>
+                <h3 class="font-display font-bold text-white">HTML5</h3>
+                <p class="text-xs text-muted">Semantic markup</p>
+              </div>
+              <span
+                class="ml-auto text-accent font-semibold text-sm"
+                aria-label="Skill level 90%"
+                >90%</span
+              >
+            </div>
+            <!-- Skill bar: role="progressbar" makes it accessible -->
+            <div
+              class="h-2 bg-border rounded-full overflow-hidden"
+              role="progressbar"
+              aria-valuenow="90"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-label="HTML5 proficiency"
+            >
+              <div
+                class="skill-bar-fill h-full bg-gradient-to-r from-accent to-orange-300 rounded-full"
+                style="--level: 90%"
+              ></div>
+            </div>
+            <p class="text-muted text-xs mt-4 leading-relaxed">
+              Semantic HTML, forms, accessibility, SEO-friendly structure, and
+              media elements.
+            </p>
+          </div>
+
+          <!-- CSS3 -->
+          <div
+            class="reveal reveal-delay skill-card group bg-surface border border-border hover:border-accent rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_32px_rgba(255,107,53,0.15)]"
+            style="--delay: 80ms"
+          >
+            <div class="flex items-center gap-4 mb-5">
+              <div
+                class="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center text-2xl"
+                aria-hidden="true"
+              >
+                🎨
+              </div>
+              <div>
+                <h3 class="font-display font-bold text-white">CSS3</h3>
+                <p class="text-xs text-muted">Styling & animations</p>
+              </div>
+              <span
+                class="ml-auto text-accent font-semibold text-sm"
+                aria-label="Skill level 85%"
+                >85%</span
+              >
+            </div>
+            <div
+              class="h-2 bg-border rounded-full overflow-hidden"
+              role="progressbar"
+              aria-valuenow="85"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-label="CSS3 proficiency"
+            >
+              <div
+                class="skill-bar-fill h-full bg-gradient-to-r from-accent to-orange-300 rounded-full"
+                style="--level: 85%"
+              ></div>
+            </div>
+            <p class="text-muted text-xs mt-4 leading-relaxed">
+              Flexbox, Grid, keyframe animations, transitions, custom
+              properties, media queries.
+            </p>
+          </div>
+
+          <!-- Tailwind CSS -->
+          <div
+            class="reveal reveal-delay skill-card group bg-surface border border-border hover:border-accent rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_32px_rgba(255,107,53,0.15)]"
+            style="--delay: 160ms"
+          >
+            <div class="flex items-center gap-4 mb-5">
+              <div
+                class="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center text-2xl"
+                aria-hidden="true"
+              >
+                💨
+              </div>
+              <div>
+                <h3 class="font-display font-bold text-white">Tailwind CSS</h3>
+                <p class="text-xs text-muted">Utility-first framework</p>
+              </div>
+              <span
+                class="ml-auto text-accent font-semibold text-sm"
+                aria-label="Skill level 80%"
+                >80%</span
+              >
+            </div>
+            <div
+              class="h-2 bg-border rounded-full overflow-hidden"
+              role="progressbar"
+              aria-valuenow="80"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-label="Tailwind CSS proficiency"
+            >
+              <div
+                class="skill-bar-fill h-full bg-gradient-to-r from-accent to-orange-300 rounded-full"
+                style="--level: 80%"
+              ></div>
+            </div>
+            <p class="text-muted text-xs mt-4 leading-relaxed">
+              Utility classes, responsive prefixes, dark mode, JIT config, and
+              component design.
+            </p>
+          </div>
+
+          <!-- JavaScript -->
+          <div
+            class="reveal reveal-delay skill-card group bg-surface border border-border hover:border-accent rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_32px_rgba(255,107,53,0.15)]"
+            style="--delay: 0ms"
+          >
+            <div class="flex items-center gap-4 mb-5">
+              <div
+                class="w-12 h-12 rounded-xl bg-yellow-500/10 flex items-center justify-center text-2xl"
+                aria-hidden="true"
+              >
+                ⚡
+              </div>
+              <div>
+                <h3 class="font-display font-bold text-white">JavaScript</h3>
+                <p class="text-xs text-muted">ES6+ fundamentals</p>
+              </div>
+              <span
+                class="ml-auto text-accent font-semibold text-sm"
+                aria-label="Skill level 72%"
+                >72%</span
+              >
+            </div>
+            <div
+              class="h-2 bg-border rounded-full overflow-hidden"
+              role="progressbar"
+              aria-valuenow="72"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-label="JavaScript proficiency"
+            >
+              <div
+                class="skill-bar-fill h-full bg-gradient-to-r from-accent to-orange-300 rounded-full"
+                style="--level: 72%"
+              ></div>
+            </div>
+            <p class="text-muted text-xs mt-4 leading-relaxed">
+              DOM manipulation, events, Fetch API, ES6 features, and async/await
+              patterns.
+            </p>
+          </div>
+
+          <!-- MySQL -->
+          <div
+            class="reveal reveal-delay skill-card group bg-surface border border-border hover:border-accent rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_32px_rgba(255,107,53,0.15)]"
+            style="--delay: 80ms"
+          >
+            <div class="flex items-center gap-4 mb-5">
+              <div
+                class="w-12 h-12 rounded-xl bg-blue-900/20 flex items-center justify-center text-2xl"
+                aria-hidden="true"
+              >
+                🗄️
+              </div>
+              <div>
+                <h3 class="font-display font-bold text-white">MySQL</h3>
+                <p class="text-xs text-muted">Relational databases</p>
+              </div>
+              <span
+                class="ml-auto text-accent font-semibold text-sm"
+                aria-label="Skill level 65%"
+                >65%</span
+              >
+            </div>
+            <div
+              class="h-2 bg-border rounded-full overflow-hidden"
+              role="progressbar"
+              aria-valuenow="65"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-label="MySQL proficiency"
+            >
+              <div
+                class="skill-bar-fill h-full bg-gradient-to-r from-accent to-orange-300 rounded-full"
+                style="--level: 65%"
+              ></div>
+            </div>
+            <p class="text-muted text-xs mt-4 leading-relaxed">
+              SQL queries, table design, joins, indexing, and integration with
+              Laravel Eloquent ORM.
+            </p>
+          </div>
+
+          <!-- Laravel -->
+          <div
+            class="reveal reveal-delay skill-card group bg-surface border border-border hover:border-accent rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_32px_rgba(255,107,53,0.15)]"
+            style="--delay: 160ms"
+          >
+            <div class="flex items-center gap-4 mb-5">
+              <div
+                class="w-12 h-12 rounded-xl bg-red-500/10 flex items-center justify-center text-2xl"
+                aria-hidden="true"
+              >
+                🔴
+              </div>
+              <div>
+                <h3 class="font-display font-bold text-white">Laravel</h3>
+                <p class="text-xs text-muted">PHP framework</p>
+              </div>
+              <span
+                class="ml-auto text-accent font-semibold text-sm"
+                aria-label="Skill level 60%"
+                >60%</span
+              >
+            </div>
+            <div
+              class="h-2 bg-border rounded-full overflow-hidden"
+              role="progressbar"
+              aria-valuenow="60"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-label="Laravel proficiency"
+            >
+              <div
+                class="skill-bar-fill h-full bg-gradient-to-r from-accent to-orange-300 rounded-full"
+                style="--level: 60%"
+              ></div>
+            </div>
+            <p class="text-muted text-xs mt-4 leading-relaxed">
+              Routing, Blade templates, Eloquent ORM, migrations, and MVC
+              architecture basics.
+            </p>
+          </div>
+
+          <!-- Git & GitHub -->
+          <div
+            class="reveal reveal-delay skill-card group bg-surface border border-border hover:border-accent rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_32px_rgba(255,107,53,0.15)]"
+            style="--delay: 80ms"
+          >
+            <div class="flex items-center gap-4 mb-5">
+              <div
+                class="w-12 h-12 rounded-xl bg-orange-600/10 flex items-center justify-center text-2xl"
+                aria-hidden="true"
+              >
+                🔧
+              </div>
+              <div>
+                <h3 class="font-display font-bold text-white">Git & GitHub</h3>
+                <p class="text-xs text-muted">Version control</p>
+              </div>
+              <span
+                class="ml-auto text-accent font-semibold text-sm"
+                aria-label="Skill level 70%"
+                >70%</span
+              >
+            </div>
+            <div
+              class="h-2 bg-border rounded-full overflow-hidden"
+              role="progressbar"
+              aria-valuenow="70"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-label="Git proficiency"
+            >
+              <div
+                class="skill-bar-fill h-full bg-gradient-to-r from-accent to-orange-300 rounded-full"
+                style="--level: 70%"
+              ></div>
+            </div>
+            <p class="text-muted text-xs mt-4 leading-relaxed">
+              Commits, branches, pull requests, merge conflicts, and GitHub
+              Pages deployment.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--PROJECTS SECTION-->
+    <section id="projects" class="py-24 px-6 bg-surface">
+      <div class="max-w-6xl mx-auto">
+        <div class="reveal">
+          <p
+            class="text-accent text-sm font-semibold tracking-widest uppercase"
+          >
+            What I Built
+          </p>
+          <h2
+            class="font-display text-4xl sm:text-5xl font-bold text-white mt-1"
+          >
+            Projects
+          </h2>
+          <div class="section-divider" aria-hidden="true"></div>
+        </div>
+
+        <!-- Grid: 1 col on mobile, 2 on sm+ -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+          <!-- PROJECT CARD: AI-Assisted E-commerce App -->
+          <article
+            class="reveal reveal-delay project-card relative bg-brand border border-border rounded-2xl overflow-hidden"
+            style="--delay: 0ms"
+          >
+            <div
+              class="h-40 bg-gradient-to-br from-orange-600/30 via-accent/20 to-transparent flex items-center justify-center"
+              aria-hidden="true"
+            >
+              <span class="text-6xl select-none">🔐</span>
+            </div>
+            <!-- Hover overlay with action links -->
+            <div
+              class="overlay absolute inset-0 bg-accent/10 backdrop-blur-sm flex items-center justify-center gap-3"
+            >
+              <a
+                href="#"
+                class="px-4 py-2 bg-accent text-white text-sm font-semibold rounded-lg hover:bg-accentDark transition-colors"
+                aria-label="Live demo for AI-Assisted E-commerce App"
+                >Live Demo ↗</a
+              >
+              <a
+                href="#"
+                class="px-4 py-2 bg-white/10 text-white text-sm font-semibold rounded-lg hover:bg-white/20 transition-colors"
+                aria-label="GitHub for AI-Assisted E-commerce App"
+                >GitHub</a
+              >
+            </div>
+            <div class="p-6">
+              <div class="flex items-start justify-between mb-3 gap-2">
+                <h3 class="font-display font-bold text-white text-lg">
+                  AI-Assisted E-commerce App
+                </h3>
+                <span
+                  class="text-xs px-3 py-1 rounded-full bg-accent/15 text-accent font-medium shrink-0"
+                  >Laravel/MySQL</span
+                >
+              </div>
+              <p class="text-muted text-sm leading-relaxed mb-4">
+                Built an e-commerce application with product catalog, shopping
+                cart, order management, authentication, and admin panel using
+                Laravel and MySQL.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span class="text-xs px-2 py-0.5 rounded bg-border text-muted"
+                  >HTML</span
+                >
+                <span class="text-xs px-2 py-0.5 rounded bg-border text-muted"
+                  >CSS</span
+                >
+                <span class="text-xs px-2 py-0.5 rounded bg-border text-muted"
+                  >JavaScript</span
+                >
+                <span class="text-xs px-2 py-0.5 rounded bg-border text-muted"
+                  >Laravel</span
+                >
+                <span class="text-xs px-2 py-0.5 rounded bg-border text-muted"
+                  >MySQL</span
+                >
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT CARD: Portfolio Website -->
+          <article
+            class="reveal reveal-delay project-card relative bg-brand border border-border rounded-2xl overflow-hidden"
+            style="--delay: 100ms"
+          >
+            <div
+              class="h-40 bg-gradient-to-br from-purple-600/30 via-pink-500/20 to-transparent flex items-center justify-center"
+              aria-hidden="true"
+            >
+              <span class="text-6xl select-none">🌟</span>
+            </div>
+            <div
+              class="overlay absolute inset-0 bg-accent/10 backdrop-blur-sm flex items-center justify-center gap-3"
+            >
+              <a
+                href="#"
+                class="px-4 py-2 bg-accent text-white text-sm font-semibold rounded-lg hover:bg-accentDark transition-colors"
+                aria-label="Live demo for Portfolio Website"
+                >Live Demo ↗</a
+              >
+              <a
+                href="#"
+                class="px-4 py-2 bg-white/10 text-white text-sm font-semibold rounded-lg hover:bg-white/20 transition-colors"
+                aria-label="GitHub for Portfolio Website"
+                >GitHub</a
+              >
+            </div>
+            <div class="p-6">
+              <div class="flex items-start justify-between mb-3 gap-2">
+                <h3 class="font-display font-bold text-white text-lg">
+                  Portfolio Website
+                </h3>
+                <span
+                  class="text-xs px-3 py-1 rounded-full bg-cyan-400/15 text-cyan-400 font-medium shrink-0"
+                  >Tailwind CSS</span
+                >
+              </div>
+              <p class="text-muted text-sm leading-relaxed mb-4">
+                This portfolio is built with Tailwind CSS, CSS animations, dark
+                mode, scroll reveal, and a typing effect.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span class="text-xs px-2 py-0.5 rounded bg-border text-muted"
+                  >Tailwind</span
+                >
+                <span class="text-xs px-2 py-0.5 rounded bg-border text-muted"
+                  >JS</span
+                >
+                <span class="text-xs px-2 py-0.5 rounded bg-border text-muted"
+                  >CSS Animations</span
+                >
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT CARD: Personal Finance Tracker -->
+          <article
+            class="reveal reveal-delay project-card relative bg-brand border border-border rounded-2xl overflow-hidden"
+            style="--delay: 0ms"
+          >
+            <div
+              class="h-40 bg-gradient-to-br from-green-600/30 via-emerald-500/20 to-transparent flex items-center justify-center"
+              aria-hidden="true"
+            >
+              <span class="text-6xl select-none">📱</span>
+            </div>
+            <div
+              class="overlay absolute inset-0 bg-accent/10 backdrop-blur-sm flex items-center justify-center gap-3"
+            >
+              <a
+                href="#"
+                class="px-4 py-2 bg-accent text-white text-sm font-semibold rounded-lg hover:bg-accentDark transition-colors"
+                aria-label="Live demo for Personal Finance Tracker"
+                >Live Demo ↗</a
+              >
+              <a
+                href="#"
+                class="px-4 py-2 bg-white/10 text-white text-sm font-semibold rounded-lg hover:bg-white/20 transition-colors"
+                aria-label="GitHub for Personal Finance Tracker"
+                >GitHub</a
+              >
+            </div>
+            <div class="p-6">
+              <div class="flex items-start justify-between mb-3 gap-2">
+                <h3 class="font-display font-bold text-white text-lg">
+                  Personal Finance Tracker
+                </h3>
+                <span
+                  class="text-xs px-3 py-1 rounded-full bg-green-400/15 text-green-400 font-medium shrink-0"
+                  >HTML/CSS/JS</span
+                >
+              </div>
+              <p class="text-muted text-sm leading-relaxed mb-4">
+                Developed a finance tracker with persistent storage, expense
+                calculation, and interactive pie charts using Chart.js.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span class="text-xs px-2 py-0.5 rounded bg-border text-muted"
+                  >HTML</span
+                >
+                <span class="text-xs px-2 py-0.5 rounded bg-border text-muted"
+                  >CSS</span
+                >
+                <span class="text-xs px-2 py-0.5 rounded bg-border text-muted"
+                  >JavaScript</span
+                >
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT CARD: Weather Explorer -->
+          <article
+            class="reveal reveal-delay project-card relative bg-brand border border-border rounded-2xl overflow-hidden"
+            style="--delay: 100ms"
+          >
+            <div
+              class="h-40 bg-gradient-to-br from-indigo-600/30 via-blue-500/20 to-transparent flex items-center justify-center"
+              aria-hidden="true"
+            >
+              <span class="text-6xl select-none">🌙</span>
+            </div>
+            <div
+              class="overlay absolute inset-0 bg-accent/10 backdrop-blur-sm flex items-center justify-center gap-3"
+            >
+              <a
+                href="#"
+                class="px-4 py-2 bg-accent text-white text-sm font-semibold rounded-lg hover:bg-accentDark transition-colors"
+                aria-label="Live demo for Weather Explorer"
+                >Live Demo ↗</a
+              >
+              <a
+                href="#"
+                class="px-4 py-2 bg-white/10 text-white text-sm font-semibold rounded-lg hover:bg-white/20 transition-colors"
+                aria-label="GitHub for Weather Explorer"
+                >GitHub</a
+              >
+            </div>
+            <div class="p-6">
+              <div class="flex items-start justify-between mb-3 gap-2">
+                <h3 class="font-display font-bold text-white text-lg">
+                  Weather Explorer
+                </h3>
+                <span
+                  class="text-xs px-3 py-1 rounded-full bg-indigo-400/15 text-indigo-400 font-medium shrink-0"
+                  >JS Feature</span
+                >
+              </div>
+              <p class="text-muted text-sm leading-relaxed mb-4">
+                Created a responsive weather application using OpenWeather API
+                and Fetch API to display real-time weather and forecasts.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span class="text-xs px-2 py-0.5 rounded bg-border text-muted"
+                  >CSS</span
+                >
+                <span class="text-xs px-2 py-0.5 rounded bg-border text-muted"
+                  >JS</span
+                >
+                <span class="text-xs px-2 py-0.5 rounded bg-border text-muted"
+                  >localStorage</span
+                >
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS SECTION-->
+    <section id="certifications" class="py-24 px-6 bg-surface">
+      <div class="max-w-6xl mx-auto">
+        <div class="reveal">
+          <p
+            class="text-accent text-sm font-semibold tracking-widest uppercase"
+          >
+            Achievements
+          </p>
+          <h2
+            class="font-display text-4xl sm:text-5xl font-bold text-white mt-1"
+          >
+            Certifications
+          </h2>
+          <div class="section-divider" aria-hidden="true"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div
+            class="reveal bg-brand border border-border rounded-2xl p-6 hover:border-accent transition-colors duration-300"
+          >
+            <h3 class="font-display text-xl text-white font-bold mb-2">
+              Crash Course on Python
+            </h3>
+            <p class="text-muted">Coursera</p>
+          </div>
+          <div
+            class="reveal reveal-delay bg-brand border border-border rounded-2xl p-6 hover:border-accent transition-colors duration-300"
+            style="--delay: 100ms"
+          >
+            <h3 class="font-display text-xl text-white font-bold mb-2">
+              Full Stack Java Development
+            </h3>
+            <p class="text-muted">Java + Spring Boot + JavaScript</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PUBLICATION SECTION-->
+    <section id="publications" class="py-24 px-6 bg-brand">
+      <div class="max-w-4xl mx-auto text-center">
+        <div class="reveal">
+          <p
+            class="text-accent text-sm font-semibold tracking-widest uppercase"
+          >
+            Research
+          </p>
+          <h2
+            class="font-display text-4xl sm:text-5xl font-bold text-white mt-1"
+          >
+            Publication
+          </h2>
+          <div class="section-divider mx-auto" aria-hidden="true"></div>
+        </div>
+
+        <div
+          class="reveal bg-surface border border-border rounded-2xl p-8 mt-10 hover:border-accent transition-colors duration-300"
+        >
+          <h3 class="font-display text-2xl font-bold text-white mb-3">
+            IoT Based Manhole Monitoring System
+          </h3>
+          <p class="text-muted leading-relaxed">
+            Published in SSGM Journal of Science and Engineering, Vol. 1, Issue
+            1, June 2023.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION-->
+    <section id="contact" class="py-24 px-6 bg-brand">
+      <div class="max-w-3xl mx-auto">
+        <div class="reveal text-center mb-12">
+          <p
+            class="text-accent text-sm font-semibold tracking-widest uppercase"
+          >
+            Reach Out
+          </p>
+          <h2
+            class="font-display text-4xl sm:text-5xl font-bold text-white mt-1"
+          >
+            Contact Me
+          </h2>
+          <div class="section-divider mx-auto" aria-hidden="true"></div>
+          <p class="text-muted">
+            Have a project, question, or just want to say hi? I'd love to hear
+            from you.
+          </p>
+        </div>
+
+        <form
+          id="contact-form"
+          novalidate
+          aria-label="Contact form"
+          class="reveal space-y-5"
+        >
+          <!-- Name field -->
+          <div>
+            <label
+              for="name"
+              class="block text-sm font-medium text-muted mb-1.5"
+            >
+              Full Name <span class="text-accent" aria-hidden="true">*</span>
+              <span class="sr-only">(required)</span>
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Your Name"
+              autocomplete="name"
+              aria-required="true"
+              aria-describedby="name-error"
+              class="form-input w-full px-4 py-3 rounded-xl text-sm"
+            />
+            <p
+              id="name-error"
+              class="error-msg text-xs text-red-400 mt-1 hidden"
+              role="alert"
+            >
+              Please enter your name.
+            </p>
+          </div>
+
+          <!-- Email field -->
+          <div>
+            <label
+              for="email"
+              class="block text-sm font-medium text-muted mb-1.5"
+            >
+              Email Address
+              <span class="text-accent" aria-hidden="true">*</span>
+              <span class="sr-only">(required)</span>
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="your@email.com"
+              autocomplete="email"
+              aria-required="true"
+              aria-describedby="email-error"
+              class="form-input w-full px-4 py-3 rounded-xl text-sm"
+            />
+            <p
+              id="email-error"
+              class="error-msg text-xs text-red-400 mt-1 hidden"
+              role="alert"
+            >
+              Please enter a valid email address.
+            </p>
+          </div>
+
+          <!-- Message field -->
+          <div>
+            <label
+              for="message"
+              class="block text-sm font-medium text-muted mb-1.5"
+            >
+              Message <span class="text-accent" aria-hidden="true">*</span>
+              <span class="sr-only">(required)</span>
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              rows="5"
+              placeholder="Your message here..."
+              aria-required="true"
+              aria-describedby="message-error"
+              class="form-input w-full px-4 py-3 rounded-xl text-sm resize-none"
+            ></textarea>
+            <p
+              id="message-error"
+              class="error-msg text-xs text-red-400 mt-1 hidden"
+              role="alert"
+            >
+              Message must be at least 10 characters.
+            </p>
+          </div>
+
+          <!-- Submit button -->
+          <button
+            type="submit"
+            class="w-full py-4 bg-accent hover:bg-accentDark text-white font-semibold rounded-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_24px_rgba(255,107,53,0.4)] flex items-center justify-center gap-2"
+          >
+            <span id="btn-text">Send Message</span>
+            <svg
+              id="btn-icon"
+              class="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z" />
+            </svg>
+          </button>
+
+          <!-- Success message (hidden until form is submitted successfully) -->
+          <div
+            id="form-success"
+            class="hidden text-center py-4 px-6 bg-green-500/10 border border-green-500/30 rounded-xl text-green-400 text-sm font-medium"
+            role="status"
+            aria-live="polite"
+          >
+            Message sent successfully! I'll get back to you soon.
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- ============================================================
+      FOOTER
+    ============================================================ -->
+    <footer class="bg-surface border-t border-border py-10 px-6 text-center">
+      <div class="max-w-6xl mx-auto">
+        <a
+          href="#hero"
+          class="font-display text-2xl font-bold grad-text"
+          aria-label="Back to top"
+          >&lt;Akshada Hadal /&gt;</a
+        >
+        <p class="text-muted text-sm mt-3">
+          Web Developer Intern &middot; Building the web, one commit at a time.
+        </p>
+
+        <nav
+          aria-label="Footer navigation"
+          class="flex justify-center gap-6 mt-5 text-sm text-muted"
+        >
+          <a
+            href="https://github.com/akshada-03"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:text-accent transition-colors"
+            >GitHub</a
+          >
+          <a
+            href="https://www.linkedin.com/in/akshada-hadal/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:text-accent transition-colors"
+            >LinkedIn</a
+          >
+          <a
+            href="mailto:hadal.akshada@gmail.com"
+            class="hover:text-accent transition-colors"
+            >Email</a
+          >
+        </nav>
+
+        <p class="text-xs text-border mt-6">
+          &copy; 2026 Akshada Hadal. Crafted with using Tailwind CSS &amp;
+          JavaScript.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Script loaded at end of body so HTML is ready before JS runs -->
+    <script src="script.js"></script>
+  </body>
+</html>

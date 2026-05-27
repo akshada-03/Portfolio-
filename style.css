@@ -1,0 +1,336 @@
+
+/* ============================================================
+   1. GLOBAL RESET & BASE
+   box-sizing: border-box makes padding/border included in
+   element width calculations — much easier to work with!
+============================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+  /* Smooth transition when switching light/dark mode */
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+
+/* ============================================================
+   2. DARK / LIGHT MODE BODY
+   Tailwind's darkMode:"class" strategy requires "dark" on <html>.
+   JS adds/removes that class when the toggle is clicked.
+============================================================ */
+
+/* DARK MODE — near-black background, light text */
+html.dark body {
+  background: #0a0a0f;
+  color: #e8e8f0;
+}
+
+/* LIGHT MODE — soft off-white background, dark text */
+html:not(.dark) body {
+  background: #f4f4f8;
+  color: #111827;
+}
+
+
+/* ============================================================
+   3. SCROLL-REVEAL ANIMATION
+   Elements with class "reveal" start invisible (opacity:0) and
+   slightly below their final position (translateY 30px).
+   JS adds "revealed" when the element enters the viewport,
+   triggering the CSS transition.
+   "reveal-delay" reads the CSS custom property --delay (set
+   inline on the element) to stagger multiple reveals.
+============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 0.65s ease,
+    transform 0.65s ease;
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered delay: each card sets its own --delay via inline style */
+.reveal-delay {
+  transition-delay: var(--delay, 0ms);
+}
+
+
+/* ============================================================
+   4. NAVBAR GLASS EFFECT
+   backdrop-filter blurs content behind the navbar.
+   -webkit-backdrop-filter is needed for Safari support.
+============================================================ */
+.navbar-glass {
+  background: rgba(10, 10, 15, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 107, 53, 0.12);
+}
+
+
+/* ============================================================
+   5. GRADIENT TEXT
+   Uses a gradient as the text "fill color" by clipping it
+   to the text shape. The -webkit- prefix is needed for Safari.
+============================================================ */
+.grad-text {
+  background: linear-gradient(120deg, #ff6b35 0%, #ffb347 60%, #ff6b35 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+
+/* ============================================================
+   6. AVATAR RING (spinning conic gradient border)
+   Wraps around a circular image. Spins via CSS keyframe.
+============================================================ */
+.avatar-ring {
+  background: conic-gradient(#ff6b35, #ffb347, #ff6b35, #e85a22, #ff6b35);
+  animation: spin 8s linear infinite;
+  padding: 3px;
+  border-radius: 50%;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* ============================================================
+   7. SKILL BARS
+   Start at width:0. When JS adds class "animated", the bar
+   transitions to --level (the target percentage set inline).
+   cubic-bezier gives it a smooth, natural easing curve.
+============================================================ */
+.skill-bar-fill {
+  width: 0%;
+  transition: width 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.skill-bar-fill.animated {
+  width: var(--level);
+}
+
+
+/* ============================================================
+   8. PROJECT CARDS
+   - .overlay starts invisible and fades in on hover
+   - .project-card lifts up and glows on hover
+============================================================ */
+.project-card .overlay {
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.project-card:hover .overlay {
+  opacity: 1;
+}
+
+.project-card {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-8px) scale(1.015);
+  box-shadow: 0 24px 48px rgba(255, 107, 53, 0.18);
+}
+
+
+/* ============================================================
+   9. FORM INPUTS
+   Custom styled inputs that work with our dark theme.
+   Three states: default, focused (orange glow), error (red),
+   and success (green).
+============================================================ */
+.form-input {
+  background: #13131a;
+  border: 1px solid #2a2a3a;
+  color: #e8e8f0;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+  outline: none;
+  /* FIX: Added border-radius here so it's not set only in Tailwind */
+  border-radius: 0.75rem;
+}
+
+.form-input:focus {
+  border-color: #ff6b35;
+  box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.18);
+}
+
+.form-input.error {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+}
+
+.form-input.success {
+  border-color: #22c55e;
+}
+
+/* Light mode: adjust form input colors for readability */
+html:not(.dark) .form-input {
+  background: #ffffff;
+  border-color: #d1d5db;
+  color: #111827;
+}
+
+html:not(.dark) .form-input:focus {
+  border-color: #ff6b35;
+  box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.18);
+}
+
+
+/* ============================================================
+   10. MOBILE MENU SLIDE ANIMATION
+   max-height trick: animating max-height from 0 → large value
+   creates a smooth slide-down effect. overflow:hidden hides
+   content when max-height is 0.
+============================================================ */
+#mobile-menu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+#mobile-menu.open {
+  max-height: 500px; /* large enough to show all links */
+}
+
+
+/* ============================================================
+   11. SECTION DIVIDER
+   A short decorative line below section headings.
+   Gradient fades from orange to transparent on the right.
+============================================================ */
+.section-divider {
+  width: 56px;
+  height: 3px;
+  background: linear-gradient(90deg, #ff6b35, transparent);
+  border-radius: 2px;
+  margin: 12px 0 32px;
+}
+
+
+/* ============================================================
+   12. DARK MODE TOGGLE KNOB
+   Smooth spring-like animation when sliding the knob.
+   cubic-bezier(0.34, 1.56, 0.64, 1) adds a slight overshoot
+   for a playful "springy" feel.
+============================================================ */
+#toggle-knob {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+
+/* ============================================================
+   13. CUSTOM SCROLLBAR (Webkit browsers: Chrome, Edge, Safari)
+   Firefox uses scrollbar-width and scrollbar-color instead.
+============================================================ */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0f;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ff6b35;
+  border-radius: 6px;
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #ff6b35 #0a0a0f;
+}
+
+
+/* ============================================================
+   14. NAV LINK UNDERLINE ANIMATION
+   The ::after pseudo-element creates an invisible underline.
+   On hover or when "active", it slides in from left (width 0 → 100%).
+============================================================ */
+.nav-link {
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #ff6b35;
+  transition: width 0.3s ease;
+  border-radius: 2px;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+
+/* ============================================================
+   15. LIGHT MODE OVERRIDES
+   Some components use dark-hardcoded colors (bg-surface, etc.)
+   These overrides ensure readable contrast in light mode.
+============================================================ */
+
+/* Navbar glass in light mode: white-ish with blur */
+html:not(.dark) .navbar-glass {
+  background: rgba(244, 244, 248, 0.85);
+  border-bottom-color: rgba(255, 107, 53, 0.15);
+}
+
+/* Burger icon lines: dark in light mode for visibility */
+html:not(.dark) .burger-line {
+  background-color: #111827;
+}
+
+/* Surface-colored sections get a light background in light mode */
+html:not(.dark) .bg-surface {
+  background-color: #ffffff !important;
+}
+
+html:not(.dark) .bg-brand {
+  background-color: #f4f4f8 !important;
+}
+
+/* Card borders get lighter in light mode */
+html:not(.dark) .border-border {
+  border-color: #e5e7eb !important;
+}
+
+/* Muted text stays readable */
+html:not(.dark) .text-muted {
+  color: #6b7280 !important;
+}
+
+/* White text should be near-black in light mode */
+html:not(.dark) .text-white {
+  color: #111827 !important;
+}
+
+/* Skill bar track in light mode */
+html:not(.dark) .bg-border {
+  background-color: #e5e7eb !important;
+}
