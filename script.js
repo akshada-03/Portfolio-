@@ -355,7 +355,7 @@ form?.addEventListener("submit", function (e) {
     showError(messageInput, false);
   }
 
-  // --- If all checks pass, send email via Web3Forms API ---
+  // --- If all checks pass, send email via FormSubmit AJAX API ---
   if (isValid) {
     btnText.textContent = "Sending...";
 
@@ -363,7 +363,7 @@ form?.addEventListener("submit", function (e) {
     const object = Object.fromEntries(formData);
     const jsonBody = JSON.stringify(object);
 
-    fetch("https://api.web3forms.com/submit", {
+    fetch("https://formsubmit.co/ajax/hadal.akshada@gmail.com", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -375,9 +375,9 @@ form?.addEventListener("submit", function (e) {
         const json = await response.json();
         btnText.textContent = "Send Message";
 
-        if (response.status === 200 && json.success) {
+        if (response.ok || json.success === "true" || json.success === true) {
           successDiv.textContent =
-            "Message sent successfully! I'll get back to you soon.";
+            "Message sent successfully! Please check your email if an activation link was sent.";
           successDiv.classList.remove(
             "hidden",
             "bg-red-500/10",
