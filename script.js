@@ -360,17 +360,24 @@ form?.addEventListener("submit", function (e) {
     btnText.textContent = "Sending...";
 
     const formData = new FormData(form);
+    const object = Object.fromEntries(formData);
+    const jsonBody = JSON.stringify(object);
 
     fetch("https://api.web3forms.com/submit", {
       method: "POST",
-      body: formData,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: jsonBody,
     })
       .then(async (response) => {
         const json = await response.json();
         btnText.textContent = "Send Message";
 
-        if (response.status === 200) {
-          successDiv.textContent = "Message sent successfully! I'll get back to you soon.";
+        if (response.status === 200 && json.success) {
+          successDiv.textContent =
+            "Message sent successfully! I'll get back to you soon.";
           successDiv.classList.remove(
             "hidden",
             "bg-red-500/10",
