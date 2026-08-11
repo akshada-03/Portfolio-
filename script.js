@@ -355,29 +355,76 @@ form?.addEventListener("submit", function (e) {
     showError(messageInput, false);
   }
 
-  // --- If all checks pass, simulate form submission ---
+  // --- If all checks pass, send email via Web3Forms API ---
   if (isValid) {
     btnText.textContent = "Sending...";
 
-    // TODO: Replace this setTimeout with a real fetch() call to your backend or
-    // an email service like Formspree, EmailJS, or Web3Forms.
-    setTimeout(() => {
-      btnText.textContent = "Send Message";
+    const formData = new FormData(form);
 
-      // Show success message
-      successDiv.classList.remove("hidden");
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData,
+    })
+      .then(async (response) => {
+        const json = await response.json();
+        btnText.textContent = "Send Message";
 
-      // Reset the form fields
-      form.reset();
+        if (response.status === 200) {
+          successDiv.textContent = "Message sent successfully! I'll get back to you soon.";
+          successDiv.classList.remove(
+            "hidden",
+            "bg-red-500/10",
+            "border-red-500/30",
+            "text-red-400"
+          );
+          successDiv.classList.add(
+            "bg-green-500/10",
+            "border-green-500/30",
+            "text-green-400"
+          );
 
-      // Remove success styling from inputs after reset
-      ["name", "email", "message"].forEach((fieldId) => {
-        document.getElementById(fieldId)?.classList.remove("success");
+          // Reset the form fields
+          form.reset();
+
+          // Remove success styling from inputs after reset
+          ["name", "email", "message"].forEach((fieldId) => {
+            document.getElementById(fieldId)?.classList.remove("success");
+          });
+
+          // Auto-hide success message after 6 seconds
+          setTimeout(() => successDiv.classList.add("hidden"), 6000);
+        } else {
+          successDiv.textContent =
+            json.message || "Something went wrong. Please try again.";
+          successDiv.classList.remove(
+            "hidden",
+            "bg-green-500/10",
+            "border-green-500/30",
+            "text-green-400"
+          );
+          successDiv.classList.add(
+            "bg-red-500/10",
+            "border-red-500/30",
+            "text-red-400"
+          );
+        }
+      })
+      .catch((error) => {
+        btnText.textContent = "Send Message";
+        successDiv.textContent =
+          "Network error. Please try sending your message again.";
+        successDiv.classList.remove(
+          "hidden",
+          "bg-green-500/10",
+          "border-green-500/30",
+          "text-green-400"
+        );
+        successDiv.classList.add(
+          "bg-red-500/10",
+          "border-red-500/30",
+          "text-red-400"
+        );
       });
-
-      // Auto-hide success message after 5 seconds
-      setTimeout(() => successDiv.classList.add("hidden"), 5000);
-    }, 1500);
   }
 });
 
