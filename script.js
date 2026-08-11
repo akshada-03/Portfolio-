@@ -132,10 +132,10 @@ const typedEl = document.getElementById("typed-text");
 
 // The roles to cycle through
 const roles = [
-  "Web Developer Intern",
-  "Frontend Learner",
-  "Problem Solver",
-  "Future Full-Stack Dev",
+  "Web Developer",
+  "PHP & Laravel Developer",
+  "Full-Stack Developer",
+  "Frontend Developer",
 ];
 
 let roleIndex = 0;   // which role we're currently typing
@@ -445,3 +445,246 @@ window.addEventListener(
   },
   { passive: true } // performance optimization for scroll listeners
 );
+
+
+/* ============================================================
+   9. PROJECT CATEGORY FILTERING
+============================================================ */
+document.addEventListener("DOMContentLoaded", () => {
+  const filterBtns = document.querySelectorAll(".filter-btn");
+  const projectArticles = document.querySelectorAll(".project-card");
+
+  filterBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      filterBtns.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      const filter = btn.getAttribute("data-filter");
+
+      projectArticles.forEach((card) => {
+        const categories = card.getAttribute("data-category") || "";
+        if (filter === "all" || categories.includes(filter)) {
+          card.style.display = "block";
+          setTimeout(() => {
+            card.style.opacity = "1";
+            card.style.transform = "translateY(0)";
+          }, 50);
+        } else {
+          card.style.opacity = "0";
+          card.style.transform = "translateY(20px)";
+          setTimeout(() => {
+            card.style.display = "none";
+          }, 300);
+        }
+      });
+    });
+  });
+});
+
+
+/* ============================================================
+   10. PROJECT DETAILS MODAL HANDLER
+============================================================ */
+window.openProjectModal = function (projectId) {
+  const projectModal = document.getElementById("project-modal");
+  const modalContent = document.getElementById("modal-content");
+  if (!projectModal || !modalContent) return;
+
+  if (projectId === "smart-hrms") {
+    modalContent.innerHTML = `
+      <div class="space-y-6">
+        <div class="flex items-center justify-between border-b border-border pb-4">
+          <div>
+            <span class="text-xs px-3 py-1 rounded-full bg-accent/15 text-accent font-semibold uppercase tracking-wider">Featured &bull; PHP/Laravel</span>
+            <h3 class="font-display text-2xl font-bold text-white mt-2">Smart HRMS — Enterprise HR Management System</h3>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="font-display font-semibold text-accent mb-2">Overview</h4>
+          <p class="text-muted text-sm leading-relaxed">
+            Smart HRMS is a production-ready, full-stack enterprise Human Resource Management System engineered with Laravel 12, Spatie Role-Based Access Control (RBAC), Blade Components, Chart.js analytics, and Google Gemini AI integration.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="font-display font-semibold text-accent mb-2">Technology Stack</h4>
+          <div class="flex flex-wrap gap-2 text-xs">
+            <span class="px-2.5 py-1 rounded bg-border text-white">Laravel 12</span>
+            <span class="px-2.5 py-1 rounded bg-border text-white">PHP 8.2+</span>
+            <span class="px-2.5 py-1 rounded bg-border text-white">Laravel Breeze</span>
+            <span class="px-2.5 py-1 rounded bg-border text-white">Spatie Permission (RBAC)</span>
+            <span class="px-2.5 py-1 rounded bg-border text-white">Eloquent ORM</span>
+            <span class="px-2.5 py-1 rounded bg-border text-white">SQLite</span>
+            <span class="px-2.5 py-1 rounded bg-border text-white">Blade Components</span>
+            <span class="px-2.5 py-1 rounded bg-border text-white">Chart.js (v4.4)</span>
+            <span class="px-2.5 py-1 rounded bg-border text-white">Google Gemini AI</span>
+            <span class="px-2.5 py-1 rounded bg-border text-white">PHPUnit / Pest (31 passing tests)</span>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="font-display font-semibold text-accent mb-2">Key Modules & Verified Features</h4>
+          <ul class="list-disc list-inside text-muted text-sm space-y-1.5 leading-relaxed">
+            <li><strong class="text-white">Role-Based Access Control (RBAC):</strong> Admin & Employee roles managed via Spatie Laravel-Permission middleware.</li>
+            <li><strong class="text-white">Departments & Designations CRUD:</strong> Eager-loaded department hierarchy with code validation, soft deletes, and relationship mapping.</li>
+            <li><strong class="text-white">Employee Management:</strong> Atomic DB transactions (<code class="text-accent text-xs">DB::transaction()</code>) managing user creation and profile avatar uploads.</li>
+            <li><strong class="text-white">Leave Management Engine:</strong> Sick (10), Casual (6), and Paid (12) balance tracking with manager approval state transitions.</li>
+            <li><strong class="text-white">Attendance & Live Check-In Widget:</strong> 1-click check-in/out, late threshold calculation (09:30 AM), monthly logs, and admin manual corrections.</li>
+            <li><strong class="text-white">Role-Scoped Chart.js Analytics:</strong> Org-wide KPIs, pending approval queues, and donut balance visualizations.</li>
+            <li><strong class="text-white">Google Gemini AI Integration:</strong> AI Announcement Generator & Email Polisher built with a clean service layer (<code class="text-accent text-xs">AIService.php</code>) and typewriter JS rendering.</li>
+            <li><strong class="text-white">Automated Test Suite:</strong> 31 feature & unit tests passing cleanly with Pest / PHPUnit.</li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-display font-semibold text-accent mb-2">Technical Implementation</h4>
+          <p class="text-muted text-sm leading-relaxed">
+            Architected using MVC and SOLID design principles. The backend isolates external AI calls into a dedicated service layer (<code class="text-accent text-xs">AIService.php</code>) consuming the Google Gemini API. Authentication and authorization are handled seamlessly via Breeze and Spatie permission gates. Front-end analytics leverage Chart.js v4.4 with responsive canvas bindings.
+          </p>
+        </div>
+
+        <div class="flex flex-wrap gap-4 pt-4 border-t border-border">
+          <a href="https://smart-hrms-2sat.onrender.com/" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 bg-accent hover:bg-accentDark text-white text-sm font-semibold rounded-lg transition-colors flex items-center gap-2">
+            Live Demo ↗
+          </a>
+          <a href="https://github.com/akshada-03/smart-hrms" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 bg-border hover:bg-border/80 text-white text-sm font-semibold rounded-lg transition-colors flex items-center gap-2">
+            GitHub Repository ↗
+          </a>
+        </div>
+      </div>
+    `;
+  } else if (projectId === "ecom-ai") {
+    modalContent.innerHTML = `
+      <div class="space-y-6">
+        <div class="flex items-center justify-between border-b border-border pb-4">
+          <div>
+            <span class="text-xs px-3 py-1 rounded-full bg-accent/15 text-accent font-semibold uppercase tracking-wider">PHP/Laravel</span>
+            <h3 class="font-display text-2xl font-bold text-white mt-2">AI-Assisted E-commerce Web Application</h3>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="font-display font-semibold text-accent mb-2">Overview</h4>
+          <p class="text-muted text-sm leading-relaxed">
+            Full-stack e-commerce web application developed with Laravel and MySQL. Features an end-to-end shopping workflow including dynamic product catalog browsing, cart management, checkout order generation, user account authentication, and an administrator dashboard for store management.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="font-display font-semibold text-accent mb-2">Technology Stack</h4>
+          <div class="flex flex-wrap gap-2 text-xs">
+            <span class="px-2.5 py-1 rounded bg-border text-white">Laravel</span>
+            <span class="px-2.5 py-1 rounded bg-border text-white">PHP</span>
+            <span class="px-2.5 py-1 rounded bg-border text-white">MySQL</span>
+            <span class="px-2.5 py-1 rounded bg-border text-white">Eloquent ORM</span>
+            <span class="px-2.5 py-1 rounded bg-border text-white">Laravel Breeze</span>
+            <span class="px-2.5 py-1 rounded bg-border text-white">Blade Templates</span>
+            <span class="px-2.5 py-1 rounded bg-border text-white">Tailwind CSS</span>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="font-display font-semibold text-accent mb-2">Key Implemented Modules</h4>
+          <ul class="list-disc list-inside text-muted text-sm space-y-1.5 leading-relaxed">
+            <li><strong class="text-white">Product Catalog & Detail View:</strong> Slug-based product routing with category filtering.</li>
+            <li><strong class="text-white">Shopping Cart Management:</strong> Cart item persistence with user session sync and live quantity updates.</li>
+            <li><strong class="text-white">Checkout & Order System:</strong> Order placement, status tracking (pending/completed), and order item line calculations.</li>
+            <li><strong class="text-white">Admin Management Panel:</strong> Product CRUD, Category CRUD, and order status lifecycle updates.</li>
+            <li><strong class="text-white">Relational DB Design:</strong> Eloquent relationships linking User, Product, Category, Cart, CartItem, Order, and OrderItem models.</li>
+          </ul>
+        </div>
+
+        <div class="flex flex-wrap gap-4 pt-4 border-t border-border">
+          <a href="https://github.com/akshada-03/AI-Assisted-E-commerce-Web-Application" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 bg-accent hover:bg-accentDark text-white text-sm font-semibold rounded-lg transition-colors flex items-center gap-2">
+            GitHub Repository ↗
+          </a>
+        </div>
+      </div>
+    `;
+  } else if (projectId === "helpdesk") {
+    modalContent.innerHTML = `
+      <div class="space-y-6">
+        <div class="flex items-center justify-between border-b border-border pb-4">
+          <div>
+            <span class="text-xs px-3 py-1 rounded-full bg-accent/15 text-accent font-semibold uppercase tracking-wider">Full Stack</span>
+            <h3 class="font-display text-2xl font-bold text-white mt-2">Helpdesk — Ticket Management System</h3>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="font-display font-semibold text-accent mb-2">Overview</h4>
+          <p class="text-muted text-sm leading-relaxed">
+            Helpdesk is a full-stack ticket management system structured as a monorepo featuring a React + TypeScript client frontend and an Express + TypeScript API backend running on the Bun runtime environment.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="font-display font-semibold text-accent mb-2">Technology Stack</h4>
+          <div class="flex flex-wrap gap-2 text-xs">
+            <span class="px-2.5 py-1 rounded bg-border text-white">React</span>
+            <span class="px-2.5 py-1 rounded bg-border text-white">TypeScript</span>
+            <span class="px-2.5 py-1 rounded bg-border text-white">Express API</span>
+            <span class="px-2.5 py-1 rounded bg-border text-white">Bun Runtime</span>
+            <span class="px-2.5 py-1 rounded bg-border text-white">Node.js</span>
+            <span class="px-2.5 py-1 rounded bg-border text-white">Monorepo Architecture</span>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="font-display font-semibold text-accent mb-2">Architecture Highlights</h4>
+          <ul class="list-disc list-inside text-muted text-sm space-y-1.5 leading-relaxed">
+            <li><strong class="text-white">Monorepo Structure:</strong> Separate <code class="text-accent text-xs">client/</code> and <code class="text-accent text-xs">server/</code> workspace directories with shared TypeScript configs.</li>
+            <li><strong class="text-white">Bun Native Bundling:</strong> Client served via Bun's fast dev server with HMR and SPA fallback.</li>
+            <li><strong class="text-white">Express REST API:</strong> Modular Express router serving JSON API endpoints with health check monitoring.</li>
+          </ul>
+        </div>
+
+        <div class="flex flex-wrap gap-4 pt-4 border-t border-border">
+          <a href="https://helpdesk-b8hm.onrender.com/" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 bg-accent hover:bg-accentDark text-white text-sm font-semibold rounded-lg transition-colors flex items-center gap-2">
+            Live Demo ↗
+          </a>
+          <a href="https://github.com/akshada-03/helpdesk" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 bg-border hover:bg-border/80 text-white text-sm font-semibold rounded-lg transition-colors flex items-center gap-2">
+            GitHub Repository ↗
+          </a>
+        </div>
+      </div>
+    `;
+  }
+
+  projectModal.classList.add("active");
+  projectModal.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+};
+
+window.closeProjectModal = function () {
+  const projectModal = document.getElementById("project-modal");
+  if (!projectModal) return;
+  projectModal.classList.remove("active");
+  projectModal.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+  const modalCloseBtn = document.getElementById("modal-close");
+  const projectModal = document.getElementById("project-modal");
+
+  if (modalCloseBtn) {
+    modalCloseBtn.addEventListener("click", window.closeProjectModal);
+  }
+
+  if (projectModal) {
+    projectModal.addEventListener("click", (e) => {
+      if (e.target === projectModal) {
+        window.closeProjectModal();
+      }
+    });
+  }
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && projectModal && projectModal.classList.contains("active")) {
+      window.closeProjectModal();
+    }
+  });
+});
+

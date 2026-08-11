@@ -151,6 +151,61 @@ html:not(.dark) body {
 
 
 /* ============================================================
+   8b. FILTER BUTTONS & PROJECT MODAL
+============================================================ */
+.filter-btn {
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px;
+  border: 1px solid #2a2a3a;
+  background: #13131a;
+  color: #a0a0b0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.filter-btn:hover {
+  border-color: #ff6b35;
+  color: #ffffff;
+}
+
+.filter-btn.active {
+  background: #ff6b35;
+  border-color: #ff6b35;
+  color: #ffffff;
+  box-shadow: 0 0 16px rgba(255, 107, 53, 0.4);
+}
+
+html:not(.dark) .filter-btn {
+  background: #ffffff;
+  border-color: #e5e7eb;
+  color: #4b5563;
+}
+
+html:not(.dark) .filter-btn.active {
+  background: #ff6b35;
+  border-color: #ff6b35;
+  color: #ffffff;
+}
+
+.modal-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-backdrop.active .modal-box {
+  transform: scale(1) translateY(0);
+}
+
+.modal-box {
+  transform: scale(0.95) translateY(10px);
+  transition: transform 0.3s ease;
+}
+
+
+
+/* ============================================================
    9. FORM INPUTS
    Custom styled inputs that work with our dark theme.
    Three states: default, focused (orange glow), error (red),
