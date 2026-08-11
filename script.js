@@ -376,8 +376,7 @@ form?.addEventListener("submit", function (e) {
         btnText.textContent = "Send Message";
 
         if (response.ok || json.success === "true" || json.success === true) {
-          successDiv.textContent =
-            "Message sent successfully! Please check your email if an activation link was sent.";
+          successDiv.textContent = "Message sent successfully!";
           successDiv.classList.remove(
             "hidden",
             "bg-red-500/10",
