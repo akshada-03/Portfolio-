@@ -1,4 +1,4 @@
-# 🌟 Personal Developer Portfolio — Akshada Hadal
+# 🌟 Portfolio 
 
 An ultra-modern, fully responsive, and dynamic personal developer portfolio website designed to showcase **Full-Stack & Web Development** projects, technical skills, certifications, and career journey. Built using **Vanilla HTML5, CSS3, Tailwind CSS**, and modern **ES6+ JavaScript**.
 
@@ -78,12 +78,3 @@ start index.html
 - ⚡ **Claude Code Masterclass** — Code with Mosh ([Course Link](https://codewithmosh.com/p/claude-code))
 - 🐍 **Crash Course on Python** — Coursera
 - ☕ **Full Stack Java Development** — Java + Spring Boot + JavaScript
-
----
-
-## 📬 Contact & Connect
-
-- **Portfolio**: [https://github.com/akshada-03/Portfolio-](https://github.com/akshada-03/Portfolio-)
-- **GitHub**: [@akshada-03](https://github.com/akshada-03)
-- **LinkedIn**: [Akshada Hadal](https://www.linkedin.com/in/akshada-hadal/)
-- **Email**: [hadal.akshada@gmail.com](mailto:hadal.akshada@gmail.com)
